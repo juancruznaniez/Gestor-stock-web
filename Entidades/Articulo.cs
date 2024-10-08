@@ -11,6 +11,7 @@ namespace Entidades
 {
     public class Articulo
     {
+        [DisplayName("id")]
         public int Id { get; set; }
 
         [DisplayName("Código")]

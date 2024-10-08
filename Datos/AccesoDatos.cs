@@ -29,6 +29,12 @@ namespace Datos
             comando.CommandText = consulta;
         }
 
+        public void setearProcedimiento(string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
+
         public void ejecutarLectura()
         {
             comando.Connection = conexion;
@@ -51,6 +57,20 @@ namespace Datos
             {
                 conexion.Open();
                 comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public int ejecutarAccionScalar() // Va a obtener como resultado el ID del registro que acabamos de ingresar.
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return int.Parse(comando.ExecuteScalar().ToString());
             }
             catch (Exception ex)
             {
